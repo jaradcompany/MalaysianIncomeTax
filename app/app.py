@@ -1,7 +1,7 @@
 from tkinter import *
 
-class Calculator:    
-    class IncomeTax:
+class HR:    
+    class System:
         def __init__(self, version, application):
             self.title = application
             self.window = Tk()
@@ -14,7 +14,6 @@ class Calculator:
             
             Label(nwindow, text="This application is developed by John Melody Me").pack()
             
-        
         def setMenuBar(self):
             # _FILE_
             file_menu = Menu(self.menu, tearoff=0x0)
@@ -46,6 +45,6 @@ class Calculator:
             self.window.mainloop()
         
 if __name__ == "__main__":
-    calculator = Calculator().IncomeTax(version=1.0, application="Malaysian Income Tax Calculator")
-    calculator.run()
+    hr = HR().System(version=1.0, application="HR System")
+    hr.run()
         
