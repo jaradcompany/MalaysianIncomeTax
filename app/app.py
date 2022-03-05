@@ -1,18 +1,34 @@
+import webbrowser
 from tkinter import *
+from PIL import Image, ImageTk
 
 class HR:    
     class System:
         def __init__(self, version, application):
+            self.devlinkedin = "https://www.linkedin.com/in/johnmelodyme/"
+            self.source = "https://github.com/justanotherresearchanddevelopment/HrSystem"
             self.title = application
             self.window = Tk()
             self.menu = Menu(self.window)
         
         def about(self):
+            def dev(): webbrowser.open_new_tab(self.devlinkedin)
+            def source(): webbrowser.open_new_tab(self.source)
+                
             nwindow = Toplevel(self.window)
             nwindow.title("About Developer")
             nwindow.geometry("400x200")
+            nwindow.resizable(False, False)
+            nwindow.configure(bg="white")
             
-            Label(nwindow, text="This application is developed by John Melody Me").pack()
+            image = ImageTk.PhotoImage(Image.open("assets/jarad.png").resize((0x64, 0x64), Image.ANTIALIAS))
+            logo = Label(nwindow, image=image, anchor=CENTER)
+            logo.image = image
+            logo.pack(pady=0xA)
+            
+            Label(nwindow, text="This application is developed by JARAD Company", bg="white").pack()
+            Button(nwindow, text="Visit Developer's profile", command=dev, bg="white", bd=0x0, fg="blue").pack(pady=0x5)
+            Button(nwindow, text="Source", command=source, bg="white", bd=0x0, fg="blue").pack(pady=0x3)
             
         def setMenuBar(self):
             # _FILE_
