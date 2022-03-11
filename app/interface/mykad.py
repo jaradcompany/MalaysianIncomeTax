@@ -58,5 +58,5 @@ class MyKad:
         if self.mykad[6:8] == "15" : return "Federal Territory of Labuan"
         if self.mykad[6:8] == "58" : return "Federal Territory of Labuan"
         if self.mykad[6:8] == "16" : return "Federal Territory of Putrajaya"
-        return
+        return None
         

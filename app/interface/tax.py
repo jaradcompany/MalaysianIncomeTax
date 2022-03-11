@@ -53,16 +53,18 @@ class MalaysianIncomeTax:
             
             if isTaxable():
                 if annual <= 5000: return 0x0
-                if annual <= 20000: return 0x1
-                if annual <= 35000: return 0x3
-                if annual <= 50000: return 0x8
-                if annual <= 70000: return 0xE
-                if annual <= 100000: return 0x15
-                if annual <= 250000: return 0x18
-                if annual <= 400000: return 24.5
-                if annual <= 600000: return 0x19
-                if annual <= 1000000: return 0x1A
+                if annual <= 20000: return 0x0
+                if annual <= 35000: return 0x96
+                if annual <= 35000: return 0x258
+                if annual <= 50000: return 0x708
+                if annual <= 70000: return 0x1130
+                if annual <= 100000: return 0x29CC
+                if annual <= 250000: return 0xB66C
+                if annual <= 400000: return 0x145FA
+                if annual <= 600000: return 0x2094A
+                if annual <= 1000000: return 0x39F8A
                 if annual > 1000000: return 0x1C
+                
             else:
                 return 0x0
             
@@ -80,6 +82,7 @@ class MalaysianIncomeTax:
         def employerRate(self):
             if self.kwspContribution <= 5000: return 0xD
             if self.kwspContribution >= 5000: return 0xC
+            if self.kwspContribution > 5000: return 0xC
             return
         
         def getOutput(self):
@@ -88,13 +91,9 @@ class MalaysianIncomeTax:
                 'SALARY_AFTER_KWSP_DEDUCTION' : self.monthlySalary - self.kwsp(),
                 'EMPLOYEE_KWSP_CONTRIBUTION' : self.kwspContribution,
                 'EMPLOYEE_KWSP_VALUE' : self.kwsp(),
-                'EMPLOYER_KWSP_CONTIBUTION' : self.employerRate(),
+                'EMPLOYER_KWSP_CONTRIBUTION' : self.employerRate(),
                 'EMPLOYEE_PERKESO_CONTRIBUTION' : self.getSocsoRate()['employee'],
                 'EMPLOYER_PERKESO_CONTRIBUTION' : self.getSocsoRate()['employer'],
-                'TOTAL_PERKESO_CONTRIBUTION' : self.getSocsoRate()['employer'] + self.getSocsoRate()['employee']
+                'TOTAL_PERKESO_CONTRIBUTION' : self.getSocsoRate()['employer'] + self.getSocsoRate()['employee'],
+                'INCOME_TAX' : self.getTaxableRate(chargeable_income=self.monthlySalary)
             } 
-            
-            
-# print(MalaysianIncomeTax().Tax(kwspContribution=11, monthlySalary=3000).getOutput())
-# print(MalaysianIncomeTax().Tax(kwspContribution=11, monthlySalary=3000).getSocsoRate())
-    
