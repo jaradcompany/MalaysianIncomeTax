@@ -40,9 +40,10 @@ class Application:
         return json.dumps(data, sort_keys=False, indent=4)
     
 if __name__ == "__main__":
-    mykad = input("What's your MYKAD number? ")
-    name = input("What's your name? ")
-    salary = input("What's your gross salary? (before any deduction) ")
-    kwsp = input("What's the percentage of your KWSP contribution? (7%, 9%, 11%) ")
-    app = Application(id=mykad, name=name, salary=float(salary), kwsp=int(kwsp))
-    app.run()
+    while True:
+        mykad = input("What's your MYKAD number? ")
+        name = input("What's your name? ")
+        salary = input("What's your gross salary? (before any deduction) ")
+        kwsp = input("What's the percentage of your KWSP contribution? (7%, 9%, 11%) ")
+        app = Application(id=mykad, name=name, salary=float(salary), kwsp=int(kwsp))
+        app.run()
